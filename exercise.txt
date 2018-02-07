@@ -63,3 +63,32 @@ Agent pid 8881
 linuxman@myuli320:~/aws-cli/hello-world$ ssh-add ~/.ssh/id_rsa
 Identity added: /home/linuxman/.ssh/id_rsa (/home/linuxman/.ssh/id_rsa)
 linuxman@myuli320:~/aws-cli/hello-world$ pbcopy < ~/.ssh/id_rsa.pub
+linuxman@myuli320:~/aws-cli/hello-world$ rm -fR .git
+linuxman@myuli320:~/aws-cli/hello-world$ git init
+Initialized empty Git repository in /home/linuxman/aws-cli/hello-world/.git/
+linuxman@myuli320:~/aws-cli/hello-world$ git add .
+linuxman@myuli320:~/aws-cli/hello-world$ git commit -m '1st commit'
+[master (root-commit) a65015e] 1st commit
+ 20 files changed, 2586 insertions(+)
+ create mode 100644 .DS_Store
+ create mode 100644 Dockerfile
+ create mode 100644 LICENSE
+ create mode 100644 README.md
+ create mode 100755 aws_ecr_registry
+ create mode 100755 aws_stack_ecs_cluster
+ create mode 100755 aws_stack_jenkins
+ create mode 100755 aws_stack_status
+ create mode 100644 docker-cloud.yml
+ create mode 100644 docker-compose.yml
+ create mode 100644 ecs-cluster.template
+ create mode 100644 ecs-jenkins-demo.template
+ create mode 100644 ecs-jenkins-demo.template.old
+ create mode 100644 exercise.txt
+ create mode 100644 newfile.txt
+ create mode 100644 nginx.conf
+ create mode 100644 php-fpm.conf
+ create mode 100644 taskdef.json
+ create mode 100644 www/index.php
+ create mode 100644 www/logo.png
+linuxman@myuli320:~/aws-cli/hello-world$ git remote add origin 'git@github.com:unixsvr4/hello-world-teladoc101.git'
+linuxman@myuli320:~/aws-cli/hello-world$
