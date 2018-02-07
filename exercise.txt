@@ -1,0 +1,65 @@
+linuxman@myuli320:~/aws-cli/hello-world$ ./aws_stack_ecs_cluster
+{
+    "StackId": "arn:aws:cloudformation:us-east-1:905483149688:stack/EcsClusterStack/d5827940-0c43-11e8-a387-500c219b8099"
+}
+linuxman@myuli320:~/aws-cli/hello-world$ ./aws_stack_jenkins 
+{
+    "StackId": "arn:aws:cloudformation:us-east-1:905483149688:stack/JenkinsStack/1eeee6d0-0c45-11e8-b562-500c28709a35"
+}
+linuxman@myuli320:~/aws-cli/hello-world$ aws ec2 describe-instances --filters "Name=tag-value","Values=JenkinsStack" --region us-east-1|jq .Reservations[].Instances[].PublicDnsName
+"ec2-54-165-114-143.compute-1.amazonaws.com"
+linuxman@myuli320:~/aws-cli/hello-world$ ssh -i "../unixman_aws_keys.pem" ec2-user@ec2-54-165-114-143.compute-1.amazonaws.com
+The authenticity of host 'ec2-54-165-114-143.compute-1.amazonaws.com (54.165.114.143)' can't be established.
+ECDSA key fingerprint is SHA256:6fItoO2XSSvTIG0Jh+lykIErQ6b/jw1Y5aT6yL3sqxI.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'ec2-54-165-114-143.compute-1.amazonaws.com,54.165.114.143' (ECDSA) to the list of known hosts.
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2017.09-release-notes/
+3 package(s) needed for security, out of 5 available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-10-0-1-37 ~]$ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+99f121521dff446bbf840a899829a88a
+[ec2-user@ip-10-0-1-37 ~]$ logout
+Connection to ec2-54-165-114-143.compute-1.amazonaws.com closed.
+linuxman@myuli320:~/aws-cli/hello-world$ ./aws_ecr_registry 
+{
+    "repository": {
+        "repositoryArn": "arn:aws:ecr:us-east-1:905483149688:repository/hello-world",
+        "repositoryName": "hello-world",
+        "repositoryUri": "905483149688.dkr.ecr.us-east-1.amazonaws.com/hello-world",
+        "registryId": "905483149688",
+        "createdAt": 1518036625.0
+    }
+}
+linuxman@myuli320:~/aws-cli/hello-world$ aws ecr get-login
+docker login -u AWS -p eyJwYXlsb2FkIjoiSDlsSFVWRmJ1N0Zhd3czVTZiZy9RdlVMWGhESFozL0VCYWU3UW9lcjBsRDhZZWJTZTZkcDNwb2l5QVVOMVNIenk5dm41QjZpRnE0V2RSM3FDNE10Tkw2ZUl5RVhDWkxWVkNBVWg0Tk4vak91OGFyWHhoc2htSk1kVFVYVzJURWRyR2J1am9Ra1RvaUV5eTdmbW94dDMxa21jU3JiVjlNQWVML2FxZ2NlWlU4ZzQ3SENHd3lwYUZrbitnZi9ES0dNaG13WlJBalpYcGZONkh4SWFzbXljZUEzYnlPdS80ZG5vSVJ3eU80ZHZscmFPUlpqTGI4dVNYaDBENVJZMXNhemorVXRjQXJ6NGgra1R0Mzh5MGVxdVBwWEhERVgxRkI4RVhiaWpZallNNWM0eHhTakxPdmk3Z3dXWitNZ1UrK0svaHJpKzB6MzV3WjhXc2VCQ1pka2JpN1NkRmFHVU9jQjRQVTE1TG9wSEl1UWlWU0U0UkZmQW5oSGxyR2w1TVpDSU56bk9pMVhpclFUMm92TU5oM3d4MWZ0WndVTy9UZHEzRFRGdHhzR2ZCYUU5Vzc1N0gzQVQwNXpjVThwZzFjVzlUcVdBV05MTkdUbmE5TFYvK3hmZ2VOSVlXdGRETm9JaGRTUUZVdklDMkUwVzNQNTc4bW02SGdRUWk5YU94MkZYK2pJRnhNSmFjVExQd09wOGszZGFJeUhLVDJsbGZtOXI0bUsxNkpJckJBRURFMm55U05kR2JITFJCNkxoQnk2NVo5Q014MVJmZWJCNXR6RzFkR1JiODJqV0F4c1MvZUYrc2NTcUo4Rm1sSE1OWlZPWmhWeDJ0R1NIcGhpLzEvMEZDenJhY3NxdGdHWFoxeGg3UVd4TWlYOWZuLy9ScEZnQm8xMktuS2xjdHdGaEdzLzFxRkJoRUlzZTlTaTVVOXdCeWVEVkZCcC9KZTQ5bTc4cGRtbkxpVEFESUZiWiszUGpQbElTUWJyVHB6R0I0ZkJPU1dUYkt0VEZJSndxL25CRkR5QmJoMk5BTUZVVlQ2cTEwbVZyVG1Vd3puY29TRlYxeko1SUNONzc2NzBGYTlRTzZ5bkJGdGZCallITlF4MWRwWDBpeW5LdFVicjBwWENydEgycEVDZStWOEpsdUltL1NWNUJyNllCcmc1Z1NpVkdvVFMzZldCZ2t4cXpBUTdiTlpyWmppbXlJTHlXa1ZadWRudGl4OStFKzY5ZkJLQ0pFMjdiMFNJUUVleFdHZUFwVkx4LzljS3phektPOS9xVDQwMFNRaVliQ1h3ZDlmcUdpcFlGVXdYYzUxRXVCMy9GcGxBTHlHRytoRS9EK2dhclpGZ2dEOUNhM1ByRDZqVWtJZ3doeTdMcitnYkhqZlRqdkllQzVWTWwzMjBLNjJ6dU9wK0JnTFJGcUVCSmtzYTBHblVGZWVBRGx1SkV5UkxkUGlvcTZWZnZSSEYxNGhSSlJSSm9ZclNjSEFKRmZMSlMxTlpKbWhtIiwiZGF0YWtleSI6IkFRRUJBSGh3bTBZYUlTSmVSdEptNW4xRzZ1cWVla1h1b1hYUGU1VUZjZTlScTgvMTR3QUFBSDR3ZkFZSktvWklodmNOQVFjR29HOHdiUUlCQURCb0Jna3Foa2lHOXcwQkJ3RXdIZ1lKWUlaSUFXVURCQUV1TUJFRURDVHN3dis5QTVWRTk5bEFUQUlCRUlBN1N2ZjBJTUxpaFRGRitMYkp1L1ZIOWNFL214Y0J2OC9SZ0VxQ21wZ3dJUm9qaWZzMkpGejk2Njk4R2IzOFBSQTFOY1UyWEU3blBRVDdJOEE9IiwidmVyc2lvbiI6IjIiLCJ0eXBlIjoiREFUQV9LRVkiLCJleHBpcmF0aW9uIjoxNTE4MDgwMDA5fQ== -e none https://905483149688.dkr.ecr.us-east-1.amazonaws.com
+linuxman@myuli320:~/aws-cli/hello-world$ ssh-keygen -t rsa -b 4069 -C unixsvr4@gmail.com
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/linuxman/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/linuxman/.ssh/id_rsa.
+Your public key has been saved in /home/linuxman/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:eOlc6pTEhu4/4svLUX+JzErwYXtHJHJdPg0iBCzg1gc unixsvr4@gmail.com
+The key's randomart image is:
++---[RSA 4069]----+
+|    ..E..oo . o  |
+|   . ....  o + o |
+|    o ..o o o o .|
+|   .   = + o   . |
+|      + S . .    |
+|     . @ X o .   |
+|      o X * +    |
+|     +.=.o o     |
+|     .B=+.       |
++----[SHA256]-----+
+linuxman@myuli320:~/aws-cli/hello-world$ eval "$(ssh-agent -s)"
+Agent pid 8881
+linuxman@myuli320:~/aws-cli/hello-world$ ssh-add ~/.ssh/id_rsa
+Identity added: /home/linuxman/.ssh/id_rsa (/home/linuxman/.ssh/id_rsa)
+linuxman@myuli320:~/aws-cli/hello-world$ pbcopy < ~/.ssh/id_rsa.pub

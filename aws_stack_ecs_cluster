@@ -1,0 +1,1 @@
+aws cloudformation create-stack --template-body file://ecs-cluster.template --stack-name EcsClusterStack --capabilities CAPABILITY_IAM --tags Key=Name,Value=ECS --region us-east-1 --parameters ParameterKey=KeyName,ParameterValue=unixman_aws_keys ParameterKey=EcsCluster,ParameterValue=getting-started ParameterKey=AsgMaxSize,ParameterValue=2
