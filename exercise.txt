@@ -91,4 +91,17 @@ linuxman@myuli320:~/aws-cli/hello-world$ git commit -m '1st commit'
  create mode 100644 www/index.php
  create mode 100644 www/logo.png
 linuxman@myuli320:~/aws-cli/hello-world$ git remote add origin 'git@github.com:unixsvr4/hello-world-teladoc101.git'
-linuxman@myuli320:~/aws-cli/hello-world$
+linuxman@myuli320:~/aws-cli/hello-world$ git push -u origin master
+The authenticity of host 'github.com (192.30.253.113)' can't be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'github.com,192.30.253.113' (RSA) to the list of known hosts.
+Counting objects: 26, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (24/24), done.
+Writing objects: 100% (26/26), 37.92 KiB | 0 bytes/s, done.
+Total 26 (delta 3), reused 0 (delta 0)
+remote: Resolving deltas: 100% (3/3), done.
+To git@github.com:unixsvr4/hello-world-teladoc101.git
+ * [new branch]      master -> master
+Branch master set up to track remote branch master from origin.
